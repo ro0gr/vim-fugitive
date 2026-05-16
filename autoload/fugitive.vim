@@ -2401,7 +2401,7 @@ function! s:FilterEscape(items, ...) abort
   endif
   let match = substitute(a:1, '^[+>]\|\\\@<![' . substitute(s:fnameescape, '\\', '', '') . ']', '\\&', 'g')
 
-  let use_fuzzy = a:0 >= 2 && a:2 && !empty(match) && exists('*matchfuzzy')
+  let use_fuzzy = a:0 >= 2 && a:2 && !empty(match) && exists('*matchfuzzy') && &wildoptions =~# '\cfuzzy'
 
   if use_fuzzy
     return matchfuzzy(items, match)
